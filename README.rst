@@ -4,7 +4,7 @@ Wrapped D3 Visualizations
 
 
 .. image:: https://img.shields.io/travis/elizabethcarney/wrapped-d3-visualizations.svg
-        :target: https://travis-ci.org/elizabethcarney/wrapped-d3-visualizations
+        :target: https://travis-ci.com/elizabethcarney/wrapped-d3-visualizations
 
 .. image:: https://readthedocs.org/projects/wrapped-d3-visualizations/badge/?version=latest
         :target: https://wrapped-d3-visualizations.readthedocs.io/en/latest/?badge=latest
