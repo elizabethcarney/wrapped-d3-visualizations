@@ -2,20 +2,14 @@
 //  Copyright (C) Elizabeth Carney, 2020.
 //  Released under MIT license; see LICENSE
 
-#include <iostream>
+#include "../scatterplot.h"
 
-#include "base/vector.h"
-#include "config/command_line.h"
+int main() {
 
-#include "../example.h"
-
-// This is the main function for the NATIVE version of Wrapped D3 Visualizations.
-
-int main(int argc, char* argv[])
-{
-  emp::vector<std::string> args = emp::cl::args_to_strings(argc, argv);
+  D3::InitializeEmpD3();
 
   std::cout << "Hello, world!" << std::endl;
 
-  return example();
+  return 0;
+
 }
