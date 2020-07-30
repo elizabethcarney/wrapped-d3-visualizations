@@ -27,7 +27,7 @@ void MakeScatterplot() {
   double graph_width = 600;
   double graph_height = 400;
 
-  double padding_bottom = svg_height - graph_height;
+  double padding_top = (svg_height - graph_height)/2;
   double padding_left = 60;
 
   double data_point_radius = 5;
@@ -39,14 +39,13 @@ void MakeScatterplot() {
 
   // set up scales
   D3::LinearScale x_scale = D3::LinearScale();
-  x_scale.SetDomain(0, 100).SetRange(0, graph_width);
+  x_scale.SetDomain(0, 100).SetRange(padding_left, graph_width+padding_left);
   D3::LinearScale y_scale = D3::LinearScale();
-  y_scale.SetDomain(0, 100).SetRange(graph_height, 0);
+  y_scale.SetDomain(0, 100).SetRange(graph_height+padding_top, padding_top);
 
-  // set up axes with padding
-  D3::Axis<D3::LinearScale> bottom_axis = D3::Axis<D3::LinearScale>("bottom", x_label, padding_bottom).SetScale(x_scale);
-  D3::Axis<D3::LinearScale> left_axis = D3::Axis<D3::LinearScale>("left", y_label, padding_left).SetScale(y_scale);
-  D3::DrawAxes(bottom_axis, left_axis, viz_svg);
+  // set up axes with shifts according to scale range
+  D3::Axis<D3::LinearScale> bottom_axis = D3::Axis<D3::LinearScale>(0, graph_height+padding_top, "bottom", x_label).SetScale(x_scale).Draw(viz_svg);
+  D3::Axis<D3::LinearScale> left_axis = D3::Axis<D3::LinearScale>(padding_left, 0, "left", y_label).SetScale(y_scale).Draw(viz_svg);
 
   // set up circle data points
   D3::Selection data_points = viz_svg.SelectAll("circle");
@@ -55,7 +54,7 @@ void MakeScatterplot() {
   D3::Selection circles = viz_svg.SelectAll("circle")
           .Data(example_data, return_data)
           .EnterAppend("circle")
-          .SetAttr("cx", [&padding_left, &x_scale](int d, int i, int j) { return padding_left + x_scale.ApplyScale<int, int>(d); })
+          .SetAttr("cx", [&x_scale](int d, int i, int j) { return x_scale.ApplyScale<int, int>(d); })
           .SetAttr("cy", [&y_scale](int d, int i, int j) { return y_scale.ApplyScale<int, int>(d); })
           .SetAttr("r", data_point_radius);
 
