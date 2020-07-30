@@ -50,7 +50,7 @@ namespace D3 {
 
     public:
       // Constructor
-      Scatterplot(std::string x_label = "", std::string y_label = "", int width = 800, int height = 400) {
+      Scatterplot(std::string x_label = "", std::string y_label = "", int width = 600, int height = 400) {
 
         this->x_label = x_label;
         this->y_label = y_label;

@@ -18,12 +18,12 @@ void MakeScatterplot() {
                           .SetAttr("width", svg_width).SetAttr("height", svg_height);
 
   D3::LinearScale x_scale = D3::LinearScale();
-  x_scale.SetDomain(0, 100).SetRange(50, 350);
+  x_scale.SetDomain(0, 100).SetRange(0, 600);
   D3::LinearScale y_scale = D3::LinearScale();
-  y_scale.SetDomain(0, 100).SetRange(50, 350);
+  y_scale.SetDomain(0, 100).SetRange(0, 400);
 
-  D3::Axis<D3::LinearScale> bottom_axis = D3::Axis<D3::LinearScale>("bottom", x_label).SetScale(x_scale);
-  D3::Axis<D3::LinearScale> left_axis = D3::Axis<D3::LinearScale>("left", y_label).SetScale(y_scale);
+  D3::Axis<D3::LinearScale> bottom_axis = D3::Axis<D3::LinearScale>("bottom", x_label, 60).SetScale(x_scale);
+  D3::Axis<D3::LinearScale> left_axis = D3::Axis<D3::LinearScale>("left", y_label, 80).SetScale(y_scale);
   D3::DrawAxes(bottom_axis, left_axis, viz_svg);
 
 }
