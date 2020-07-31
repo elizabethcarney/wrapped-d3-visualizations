@@ -48,8 +48,7 @@ void MakeScatterplot_Foundation() {
   // set up axes with shifts according to scale range
   D3::Axis<D3::LinearScale> bottom_axis = D3::Axis<D3::LinearScale>(0, graph_height+padding_top, "bottom", x_label).SetScale(x_scale).Draw(viz_svg);
   D3::Axis<D3::LinearScale> left_axis = D3::Axis<D3::LinearScale>(padding_left, 0, "left", y_label).SetScale(y_scale).Draw(viz_svg);
-  left_axis.SetTicks(7).SetTickFormat(",.0f"); // set ticks to only list one digit //FIXME not working!
-  D3::Select("#scatterplot_svg>g:nth-child(2)>text").SetAttr("transform", "rotate(-90) translate(-100, 0)"); // FIXME after axis updates are merged
+  left_axis.SetTicks(7,".0f"); // set ticks to only list one digit //FIXME not working!
 
   // set up circle data points
   D3::Selection data_points = viz_svg.SelectAll("circle");
